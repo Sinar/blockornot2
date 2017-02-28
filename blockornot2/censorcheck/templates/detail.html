@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Detail{% endblock %}
+{% block content %}
+<div class="row">
+  <div class="page-header">
+      <h1>Results: {{ url }}</h1>
+  </div>
+   <div class="table">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ISP</th>
+          <th>Status</th>
+          <th>Test Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for entry in isps %}
+          <tr>
+            <td>{{entry.isp}}</td>
+            <td>{% if entry.status == "OPEN" %}<span class="label label-success">Not blocked</span> 
+      {% else %}<span class="label label-danger">Blocked</span>{% endif %}</td>
+            <td>{{entry.test_time}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}
